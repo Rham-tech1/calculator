@@ -1,0 +1,168 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+  background-color: #0b0f19;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.App {
+  box-sizing: border-box;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  padding: 20px;
+}
+
+.Header {
+  color: #4ade80;
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+  text-shadow: 0 0 10px rgba(74, 222, 128, 0.4);
+}
+
+/* Calculator Container with Background Image & Green Glow */
+.calculator {
+  width: 340px;
+  background-color: #000;
+  background-image: url('/ben10.jpg'); /* Make sure ben10.jpg is inside your public/ folder */
+  background-size: cover;
+  background-position: center;
+  border-radius: 24px;
+  padding: 25px 20px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  border: 2px solid #22c55e;
+  /* Outer Chassis Neon Green Glow */
+  box-shadow: 0 0 25px rgba(34, 197, 94, 0.5), 
+              0 0 50px rgba(34, 197, 94, 0.2),
+              inset 0 0 15px rgba(0, 0, 0, 0.8);
+}
+
+/* Dark Overlay to maintain clarity */
+.calculator::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+}
+
+.calculator > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* Display Screen with Glowing Text & Screen Box */
+.display {
+  width: 100%;
+  height: 90px;
+  font-size: 3.5rem;
+  font-weight: 600;
+  text-align: right;
+  background-color: rgba(15, 23, 42, 0.75);
+  border: 1px solid rgba(74, 222, 128, 0.5);
+  border-radius: 12px;
+  color: #4ade80;
+  /* Neon Text Shadow & Inner Glow */
+  text-shadow: 0 0 12px #22c55e, 0 0 20px #22c55e;
+  box-shadow: inset 0 0 15px rgba(34, 197, 94, 0.2),
+              0 0 15px rgba(34, 197, 94, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 15px;
+  margin-bottom: 20px;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.display::-webkit-scrollbar {
+  display: none;
+}
+
+/* Keypad Grid Layout */
+.keypad {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(4, 1fr);
+  width: 100%;
+}
+
+/* Base Circular Button Styling with Glow */
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  border: 1px solid rgba(74, 222, 128, 0.4);
+  font-size: 1.5rem;
+  font-weight: 600;
+  background-color: rgba(0, 0, 0, 0.75);
+  color: #ffffff;
+  cursor: pointer;
+  user-select: none;
+  /* Green Button Glow */
+  box-shadow: 0 0 10px rgba(34, 197, 94, 0.25), 
+              inset 0 0 8px rgba(34, 197, 94, 0.2);
+  transition: all 0.15s ease-in-out;
+}
+
+.button:hover {
+  background-color: rgba(34, 197, 94, 0.2);
+  box-shadow: 0 0 15px rgba(34, 197, 94, 0.6);
+  border-color: #4ade80;
+}
+
+.button:active {
+  transform: scale(0.92);
+  box-shadow: 0 0 20px rgba(74, 222, 128, 0.9);
+}
+
+/* Neon Green Operator Buttons (+, -, ×, ÷, =) */
+.button.operator {
+  background-color: #22c55e;
+  color: #000000;
+  border: none;
+  font-weight: 700;
+  font-size: 1.8rem;
+  box-shadow: 0 0 15px rgba(34, 197, 94, 0.8);
+}
+
+.button.operator:hover {
+  background-color: #4ade80;
+  box-shadow: 0 0 25px rgba(74, 222, 128, 1);
+}
+
+/* Amber Clear Button (CLR) */
+.button.action {
+  background-color: #f59e0b;
+  color: #000000;
+  border: none;
+  font-size: 1rem;
+  font-weight: 800;
+  box-shadow: 0 0 15px rgba(245, 158, 11, 0.7);
+}
+
+.button.action:hover {
+  background-color: #fbbf24;
+  box-shadow: 0 0 25px rgba(251, 191, 36, 1);
+}

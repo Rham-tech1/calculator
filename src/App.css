@@ -1,12 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 body {
-  background-color: #0b0f19;
+  background-color: #2b2b2b;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -14,155 +16,135 @@ body {
 }
 
 .App {
-  box-sizing: border-box;
-  text-align: center;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  gap: 15px;
+  width: 100%;
   padding: 20px;
 }
 
-.Header {
-  color: #4ade80;
-  font-size: 0.95rem;
-  letter-spacing: 0.5px;
-  font-weight: 600;
-  text-shadow: 0 0 10px rgba(74, 222, 128, 0.4);
-}
-
-/* Calculator Container with Background Image & Green Glow */
-.calculator {
-  width: 340px;
-  background-color: #000;
-  background-image: url('/ben10.jpg'); /* Make sure ben10.jpg is inside your public/ folder */
-  background-size: cover;
-  background-position: center;
-  border-radius: 24px;
-  padding: 25px 20px;
-  position: relative;
+.phone-container {
+  width: 360px;
+  height: 680px;
+  background-color: #e5e5e5;
+  border-radius: 36px;
+  border: 4px solid #111111;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
   display: flex;
   flex-direction: column;
-  align-items: center;
+  justify-content: space-between;
   overflow: hidden;
-  border: 2px solid #22c55e;
-  /* Outer Chassis Neon Green Glow */
-  box-shadow: 0 0 25px rgba(34, 197, 94, 0.5), 
-              0 0 50px rgba(34, 197, 94, 0.2),
-              inset 0 0 15px rgba(0, 0, 0, 0.8);
 }
 
-/* Dark Overlay to maintain clarity */
-.calculator::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.4);
-  z-index: 1;
+.Header {
+  color: #111111;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-align: center;
+  padding: 18px 12px 6px;
+  letter-spacing: 0.2px;
 }
 
-.calculator > * {
-  position: relative;
-  z-index: 2;
-}
-
-/* Display Screen with Glowing Text & Screen Box */
-.display {
-  width: 100%;
-  height: 90px;
-  font-size: 3.5rem;
-  font-weight: 600;
+.display-container {
+  padding: 10px 24px 20px;
   text-align: right;
-  background-color: rgba(15, 23, 42, 0.75);
-  border: 1px solid rgba(74, 222, 128, 0.5);
-  border-radius: 12px;
-  color: #4ade80;
-  /* Neon Text Shadow & Inner Glow */
-  text-shadow: 0 0 12px #22c55e, 0 0 20px #22c55e;
-  box-shadow: inset 0 0 15px rgba(34, 197, 94, 0.2),
-              0 0 15px rgba(34, 197, 94, 0.25);
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: flex-end;
-  padding: 0 15px;
-  margin-bottom: 20px;
-  overflow-x: auto;
-  white-space: nowrap;
+  flex-grow: 1;
 }
 
-.display::-webkit-scrollbar {
-  display: none;
+.equation-text {
+  color: #666666;
+  font-size: 1.1rem;
+  min-height: 24px;
+  margin-bottom: 4px;
+  font-weight: 500;
 }
 
-/* Keypad Grid Layout */
+.main-display {
+  color: #000000;
+  font-size: 2.8rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  word-wrap: break-word;
+  transition: font-size 0.2s ease;
+}
+
+.main-display.small-text {
+  font-size: 1.25rem;
+  letter-spacing: 0;
+}
+
+.keypad-sheet {
+  background-color: #f2f2f2;
+  border-top-left-radius: 28px;
+  border-top-right-radius: 28px;
+  padding: 12px 18px 20px 18px;
+  border-top: 1px solid #dcdcdc;
+}
+
+.drag-handle {
+  width: 40px;
+  height: 4px;
+  background-color: #cccccc;
+  border-radius: 2px;
+  margin: 0 auto 14px auto;
+}
+
 .keypad {
   display: grid;
-  gap: 12px;
   grid-template-columns: repeat(4, 1fr);
-  width: 100%;
+  gap: 12px;
 }
 
-/* Base Circular Button Styling with Glow */
 .button {
+  height: 58px;
+  border-radius: 16px;
+  border: none;
+  font-size: 1.3rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 62px;
-  height: 62px;
-  border-radius: 50%;
-  border: 1px solid rgba(74, 222, 128, 0.4);
-  font-size: 1.5rem;
-  font-weight: 600;
-  background-color: rgba(0, 0, 0, 0.75);
-  color: #ffffff;
-  cursor: pointer;
   user-select: none;
-  /* Green Button Glow */
-  box-shadow: 0 0 10px rgba(34, 197, 94, 0.25), 
-              inset 0 0 8px rgba(34, 197, 94, 0.2);
-  transition: all 0.15s ease-in-out;
-}
-
-.button:hover {
-  background-color: rgba(34, 197, 94, 0.2);
-  box-shadow: 0 0 15px rgba(34, 197, 94, 0.6);
-  border-color: #4ade80;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .button:active {
-  transform: scale(0.92);
-  box-shadow: 0 0 20px rgba(74, 222, 128, 0.9);
+  transform: scale(0.94);
 }
 
-/* Neon Green Operator Buttons (+, -, ×, ÷, =) */
-.button.operator {
-  background-color: #22c55e;
-  color: #000000;
-  border: none;
+.btn-number {
+  background-color: #ffffff;
+  color: #111111;
+}
+
+.btn-function {
+  background-color: #d8d8d8;
+  color: #111111;
+}
+
+.btn-operator {
+  background-color: #ff9f0a;
+  color: #ffffff;
+  font-size: 1.4rem;
+}
+
+.btn-fullname {
+  grid-column: span 4;
+  height: 50px;
+  border-radius: 14px;
+  background-color: #ffffff;
+  color: #ff9f0a;
+  border: 1px solid #ff9f0a;
+  font-size: 1.05rem;
   font-weight: 700;
-  font-size: 1.8rem;
-  box-shadow: 0 0 15px rgba(34, 197, 94, 0.8);
+  margin-top: 4px;
 }
 
-.button.operator:hover {
-  background-color: #4ade80;
-  box-shadow: 0 0 25px rgba(74, 222, 128, 1);
-}
-
-/* Amber Clear Button (CLR) */
-.button.action {
-  background-color: #f59e0b;
-  color: #000000;
-  border: none;
-  font-size: 1rem;
-  font-weight: 800;
-  box-shadow: 0 0 15px rgba(245, 158, 11, 0.7);
-}
-
-.button.action:hover {
-  background-color: #fbbf24;
-  box-shadow: 0 0 25px rgba(251, 191, 36, 1);
+.btn-fullname:hover {
+  background-color: #fff8ef;
 }
